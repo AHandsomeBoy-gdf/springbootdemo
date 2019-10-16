@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;
+import java.util.Random;
 
 @RestController
 public class HelloController {
@@ -22,7 +23,7 @@ public class HelloController {
     @Autowired
     private Registration registration;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public User index() {
         List<ServiceInstance> instances = client.getInstances(registration.getServiceId());
         for (ServiceInstance instance:
@@ -33,5 +34,19 @@ public class HelloController {
         person.setName("诺克萨斯");
         person.setAge("10");
         return person;
+    }
+
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public String hello() throws Exception{
+        //Hystrix默认超时时间为2000ms
+        //int sleepTime = new Random().nextInt(3000);
+        //System.out.println("sleep time is :" + sleepTime);
+        //Thread.sleep(sleepTime);
+        List<ServiceInstance> instances = client.getInstances(registration.getServiceId());
+        for (ServiceInstance instance:
+                instances) {
+            System.out.println("收到请求/hello, host:" + instance.getHost() + ", service_id: " + instance.getServiceId());
+        }
+        return "Hello World";
     }
 }
