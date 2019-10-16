@@ -42,6 +42,10 @@
 
     </dependencies>
 
+    <modules>
+        <module>ribbonconsumer</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

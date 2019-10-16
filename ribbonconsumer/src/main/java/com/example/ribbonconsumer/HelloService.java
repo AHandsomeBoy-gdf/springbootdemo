@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import rx.Observable;
 
+import java.util.List;
 import java.util.concurrent.Future;
 
 @Service
@@ -33,7 +34,6 @@ public class HelloService {
 
     /**
      *  命令-同步调用 返回单个操作结果
-     * @param restTemplate
      * @param id
      * @return
      */
@@ -44,7 +44,6 @@ public class HelloService {
 
     /**
      * 命令-异步调用 返回单个操作结果
-     * @param restTemplate
      * @param id
      * @return
      */
