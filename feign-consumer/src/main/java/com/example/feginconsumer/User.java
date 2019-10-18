@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.feginconsumer;
 
 public class User {
     private String name;

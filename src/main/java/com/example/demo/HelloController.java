@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.serviceregistry.Registration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -32,7 +30,7 @@ public class HelloController {
         }
         User person = new User();
         person.setName("诺克萨斯");
-        person.setAge("10");
+        person.setAge(10);
         return person;
     }
 
@@ -48,5 +46,20 @@ public class HelloController {
             System.out.println("收到请求/hello, host:" + instance.getHost() + ", service_id: " + instance.getServiceId());
         }
         return "Hello World";
+    }
+
+    @RequestMapping(value = "hello1", method = RequestMethod.GET)
+    public String hello2(@RequestParam String name) {
+        return "Hello " + name;
+    }
+
+    @RequestMapping(value = "hello2", method = RequestMethod.GET)
+    public User hello2(@RequestHeader String name, @RequestHeader Integer age) {
+        return new User(name, age);
+    }
+
+    @RequestMapping(value = "hello3", method = RequestMethod.POST)
+    public String hello3(@RequestBody User user) {
+        return "Hello " + user.getName() + ", " + user.getAge();
     }
 }

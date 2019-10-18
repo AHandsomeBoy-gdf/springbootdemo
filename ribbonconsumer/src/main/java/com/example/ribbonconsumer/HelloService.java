@@ -63,7 +63,10 @@ public class HelloService {
      * @return
      */
     @CacheResult(cacheKeyMethod = "getUserByIdCacheKey")
-    @HystrixCommand(observableExecutionMode = ObservableExecutionMode.EAGER, commandKey = "getPersonById", groupKey = "PersonGroup", threadPoolKey = "getPersonByIdThread")
+    @HystrixCommand(observableExecutionMode = ObservableExecutionMode.EAGER,
+            commandKey = "getPersonById",
+            groupKey = "PersonGroup",
+            threadPoolKey = "getPersonByIdThread")
     public Observable<Person> getPersonById(@CacheKey Long id) {
         return Observable.unsafeCreate(subscriber -> {
             try {
