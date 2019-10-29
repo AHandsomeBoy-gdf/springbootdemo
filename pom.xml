@@ -41,6 +41,7 @@
 
     <modules>
         <module>ribbonconsumer</module>
+        <module>feign-consumer</module>
     </modules>
 
     <dependencyManagement>
